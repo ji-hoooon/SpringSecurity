@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 //@Getter + @Setter + @ToString + @EqualsAndHashCode
-public class User {
+public class User extends AuditingEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
