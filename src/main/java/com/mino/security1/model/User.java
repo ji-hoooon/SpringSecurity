@@ -21,8 +21,8 @@ import java.util.Date;
 @Entity
 @Data
 //@Getter + @Setter + @ToString + @EqualsAndHashCode
-public class User {
-//public class User extends AuditingEntity{
+//public class User {
+public class User extends AuditingEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,9 +31,9 @@ public class User {
     private String email;
     private String role;
 
-    @CreationTimestamp
-    private Timestamp createTime;
-
-    @UpdateTimestamp
-    private Timestamp updateTime;
+//    @CreationTimestamp
+//    private Timestamp createTime;
+//
+//    @UpdateTimestamp
+//    private Timestamp updateTime;
 }

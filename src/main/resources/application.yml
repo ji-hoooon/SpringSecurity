@@ -11,8 +11,6 @@ server:
 spring:
   data:
     jpa:
-      repositories:
-        enable-default-repositories: false
       auditing:
         enabled: true
   datasource:
