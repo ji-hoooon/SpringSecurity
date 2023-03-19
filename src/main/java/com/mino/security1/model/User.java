@@ -3,6 +3,9 @@ package com.mino.security1.model;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -10,9 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
-
+@Entity
 @Data
-//@Entity + @Getter + @Setter + @ToString
+//@Getter + @Setter + @ToString + @EqualsAndHashCode
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +25,6 @@ public class User {
     private String email;
     private String role;
 
-    @CreationTimestamp
-    private Timestamp createDate;
-
+//    @CreationTimestamp
+//    private Timestamp createDate;
 }
