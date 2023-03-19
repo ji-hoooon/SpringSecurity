@@ -14,11 +14,11 @@ spring:
     username: mino
     password: 1234
 
-  mvc:
-    view:
-      prefix: /templates/
-      suffix: .mustache
-
+#  mvc:
+#    view:
+#      prefix: /templates/
+#      suffix: .mustache
+#musatche ??? ??? ??? ????
   jpa:
     hibernate:
       ddl-auto: create #create update none
