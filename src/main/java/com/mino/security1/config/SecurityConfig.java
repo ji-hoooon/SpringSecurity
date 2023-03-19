@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.SecurityBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -21,8 +22,12 @@ import javax.servlet.Filter;
 @Configuration
 //@EnableWebSecurity
 //  스프링 시큐리티 필터가 스프링 필터체인에 등록이 된다.
-
 //WebSecurityConfigurerAdapter
+@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
+//securedEnabled: 특정 메서드에 @Secure 어노테이션을 붙여서 명시한 권한을 가진 사용자만
+// 호출을 가능하게 하는 어노테이션
+//prePostEnabled : 특정 메서드에 @PreAuthorize 어노테이션을 붙여서 메서드 실행 전에
+// 특정 조건을 만족하는지 검사를 가능하게하는 어노테이션
 public class SecurityConfig {
 
     //해당 메서드의 리턴되는 오브젝트를 IoC로 등록된다.
