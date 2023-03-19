@@ -35,7 +35,7 @@ public class IndexController {
     //스프링 시큐리티가 해당 주소 필터링
     //: SecurityConfig로 필터설정후 시큐리티가 작동안함
     @GetMapping("/login")
-    public @ResponseBody String login(){
+    public String login(){
         return "login";
     }
     @GetMapping("/join")

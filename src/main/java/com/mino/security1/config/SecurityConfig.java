@@ -52,7 +52,6 @@ public class SecurityConfig {
         //만약 접근 권한이 없는 페이지 이동시 로그인 폼으로 이동되도록 하는데
         //로그인 페이지를 커스텀 로그인 페이지로 설정한다.
 
-
         return http.build();
     }
 
