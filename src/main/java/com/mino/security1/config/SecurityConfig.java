@@ -55,9 +55,16 @@ public class SecurityConfig {
         //그외에는 모두 허용
                 .and()
                 .formLogin()
-                .loginPage("/loginForm");
+                .loginPage("/loginForm")
+        //UserDetailsService에 전달되는 인자명을 바꿀 경우
+//                .usernameParameter("username2");
+
         //만약 접근 권한이 없는 페이지 이동시 로그인 폼으로 이동되도록 하는데
         //로그인 페이지를 커스텀 로그인 페이지로 설정한다.
+                .loginProcessingUrl("/login")
+        //login 주소가 호출되면 시큐리티가 필터링해서 대신 로그인 진행
+                .defaultSuccessUrl("/");
+        //로그인 성공시 인덱스 페이지로 이동
 
         return http.build();
     }
