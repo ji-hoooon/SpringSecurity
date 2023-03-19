@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
@@ -23,6 +24,12 @@ import javax.servlet.Filter;
 
 //WebSecurityConfigurerAdapter
 public class SecurityConfig {
+
+    //해당 메서드의 리턴되는 오브젝트를 IoC로 등록된다.
+    @Bean
+    public BCryptPasswordEncoder encodePwd(){
+        return new BCryptPasswordEncoder();
+    }
 
 //    @Override
 //    public void configure(SecurityBuilder builder) throws Exception {
@@ -48,7 +55,7 @@ public class SecurityConfig {
         //그외에는 모두 허용
                 .and()
                 .formLogin()
-                .loginPage("/login");
+                .loginPage("/loginForm");
         //만약 접근 권한이 없는 페이지 이동시 로그인 폼으로 이동되도록 하는데
         //로그인 페이지를 커스텀 로그인 페이지로 설정한다.
 

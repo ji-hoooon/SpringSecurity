@@ -7,7 +7,14 @@ server:
       enabled: true
       force: true
 
+#auditing? ?? ??
 spring:
+  data:
+    jpa:
+      repositories:
+        enable-default-repositories: false
+      auditing:
+        enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul
