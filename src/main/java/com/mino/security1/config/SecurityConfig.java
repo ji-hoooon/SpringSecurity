@@ -1,5 +1,7 @@
 package com.mino.security1.config;
 
+import com.mino.security1.config.auth.PrincipalOauth2UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +31,8 @@ import javax.servlet.Filter;
 //prePostEnabled : 특정 메서드에 @PreAuthorize 어노테이션을 붙여서 메서드 실행 전에
 // 특정 조건을 만족하는지 검사를 가능하게하는 어노테이션
 public class SecurityConfig {
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
 
     //해당 메서드의 리턴되는 오브젝트를 IoC로 등록된다.
     @Bean
@@ -68,8 +72,16 @@ public class SecurityConfig {
         //로그인 페이지를 커스텀 로그인 페이지로 설정한다.
                 .loginProcessingUrl("/login")
         //login 주소가 호출되면 시큐리티가 필터링해서 대신 로그인 진행
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
         //로그인 성공시 인덱스 페이지로 이동
+                .and()
+                .oauth2Login()
+                .loginPage("/loginForm")
+        //OAuth2 로그인 설정 -> 로그인페이지는 동일하게 설정
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
+        //로그인 완료 (인증 처리 완료) -> 후처리 작업
+        //OAuth2 client 라이브러리는 액세스 토큰과 사용자 프로필 정보를 자동으로 처리한다.
 
         return http.build();
     }

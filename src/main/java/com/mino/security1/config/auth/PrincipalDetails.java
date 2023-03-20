@@ -1,9 +1,11 @@
 package com.mino.security1.config.auth;
 
 import com.mino.security1.model.User;
+import lombok.Data;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +19,8 @@ import java.util.Collection;
 
 //SecurityContextHolder -> Security Context -> Authentication -> UserDetails
 
+
+@Data
 public class PrincipalDetails implements UserDetails {
 
     private User user; //컴포지션 - 포함관계로 추가
