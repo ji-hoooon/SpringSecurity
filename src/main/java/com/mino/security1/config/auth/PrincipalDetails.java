@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 
 //시큐리티가 /login 주소 요청이 오면 해당 주소를 필터링해서 로그인을 진행
@@ -21,11 +22,13 @@ import java.util.Collection;
 
 
 @Data
-public class PrincipalDetails implements UserDetails {
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
     private User user; //컴포지션 - 포함관계로 추가
 
     //생성자로 의존성 주입
+
+    //일반 로그인시 사용하는 생성자
     public PrincipalDetails(User user) {
         this.user = user;
     }
@@ -79,4 +82,26 @@ public class PrincipalDetails implements UserDetails {
         //현재 시간 -마지막 로그인 시간 => 1년 초과하면 return false;
         return true;
     }
+
+
+    //OAuth2User가 가지고 있는 정보
+    private Map<String,Object> attributes; //컴포지션 - 포함관계로추가
+
+    //생성자 오버라이딩
+    //소셜 로그인시 사용하는 생성자
+    public PrincipalDetails(User user, Map<String, Object> attributes) {
+        this.user = user;
+        this.attributes=attributes;
+    }
+    //OAuth2User 구현
+    @Override
+    public String getName() {
+        return (String) attributes.get("sub");
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
 }

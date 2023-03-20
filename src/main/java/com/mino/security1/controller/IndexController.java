@@ -36,8 +36,13 @@ public class IndexController {
         return "index";
     }
 
+    //OAuth2, 일반 로그인 둘다 인증된 사용자 정보를 PrincipalDetails로 처리 가능
+    //@AuthenticationPrincipal 활성화 시기
+
     @GetMapping("/user")
-    public @ResponseBody String user(){
+    public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principalDetails)
+    {
+        System.out.println("principalDetails.getUser() = " + principalDetails.getUser());
         return "user";
     }
 

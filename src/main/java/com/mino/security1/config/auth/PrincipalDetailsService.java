@@ -17,6 +17,7 @@ public class PrincipalDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     //리턴값은 SecurityContext(Authentication(UserDetails))
+    //함수종료시 @AuthenticationPrincipal 어노테이션으로 Authentication 객체 반환 가능
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //전달받은 유저명에 해당하는 유저가 있는지 먼저 체크
